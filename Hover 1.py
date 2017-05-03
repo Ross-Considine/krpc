@@ -57,13 +57,6 @@ class Application():
         self.label_6 = tk.Label(frame, textvariable=update_alt).grid(row=2, column=3)
         self.label_7 = tk.Label(frame, textvariable=update_target).grid(row=1, column=3)
         
-        
-
-        #text=tk.Label(frame,text='HELLO').grid(row=0,column=0)
-        #text.configure(text=time.asctime())
-        #root.after(1000, Refresher) # every second...
-    
-
     #--------------------------------------------------------------------------------
     # Button Click Events
 
@@ -90,13 +83,6 @@ class Application():
         root.destroy()
         exit()
 
-
-#def Refresher():
-    #global text
-    #text.configure(text=time.asctime())
-    #root.after(1000, Refresher) # every second...
-
-    
 #-----------------------------------------------------------------------------------
 # Establishes a connection to the server
 
@@ -109,14 +95,12 @@ canvas = conn.ui.stock_canvas
 vessel = conn.space_center.active_vessel
 control = vessel.control
 flight = vessel.flight(vessel.orbit.body.reference_frame)
+g = 9.81
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=
 #=#=#=#=#=#=#=#=#=#   Dynamic Label Definitions   #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=
 # Number Variable Definitions
-
-
-
 
 update_target = tk.DoubleVar()
 update_target.set(config.var1)
@@ -130,7 +114,6 @@ round_update_throttle = float(control.throttle)
 round(round_update_throttle, 2)
 update_throttle = tk.DoubleVar()
 update_throttle.set(control.throttle)
-
 
 #-----------------------------------------------------------------------------------
 # Creates an object representing the active vessel
@@ -173,8 +156,6 @@ vessel.control.gear = False
 #-----------------------------------------------------------------------------------
 # Basic Hover Script
 
-#target = Set_Height # target altitude above the surface, in meters
-g = 9.81
 def calcs():
     alt_error = (config.var1 - flight.surface_altitude)
     a = g - flight.vertical_speed + alt_error
@@ -189,14 +170,9 @@ def calcs():
 #Start Application
 
 app = Application(root)
-#Refresher()
-# Bring GUI to front
-
 root.lift()
 root.attributes('-topmost',True)
 root.after_idle(root.attributes,'-topmost',True)
-# GUI Event loop and repeats
-
 root.after_idle(calcs)
 root.title("KSP HoverBot")
 root.mainloop()
