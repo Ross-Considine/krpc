@@ -10,7 +10,7 @@ else:
     isPython3 = False
     import Tkinter as tk
 
-# R O O T 
+# R O O T
 #===============================================================================
 root = tk.Tk()
 
@@ -21,7 +21,7 @@ root = tk.Tk()
 
 class Application():
 
-        # C O N S T R U C T O R 
+        # C O N S T R U C T O R
     #===========================================================================
 
     def __init__(self, master):
@@ -56,17 +56,17 @@ class Application():
         self.label_5 = tk.Label(frame, textvariable=update_throttle).grid(row=0, column=3)
         self.label_6 = tk.Label(frame, textvariable=update_alt).grid(row=2, column=3)
         self.label_7 = tk.Label(frame, textvariable=update_target).grid(row=1, column=3)
-        
+
     #--------------------------------------------------------------------------------
     # Button Click Events
 
     def printalt_up(self):
         print("Increase Altitude +")
         config.var1 +=1
-        #var2.set="Increase Altitude"   
+        #var2.set="Increase Altitude"
     def printalt_down(self):
         print("Decrease Altitude -")
-        config.var1 -=1      
+        config.var1 -=1
     def bttn_Quit(event):
         vessel.control.gear = True
         time.sleep(2)
